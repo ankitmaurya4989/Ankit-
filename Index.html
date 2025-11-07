@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ankit's Portfolio - Seriously, hire this guy.</title>
+    <!-- Load Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Load Inter font -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0d1117; /* Dark background */
+        }
+        .card {
+            background-color: #161b22; /* Slightly lighter dark background for cards */
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.2), 0 4px 6px -2px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body class="text-gray-200 min-h-screen p-4 sm:p-8 flex items-center justify-center">
+
+    <div class="max-w-4xl w-full space-y-12">
+
+        <!-- Header and Introduction -->
+        <header class="text-center">
+            <h1 class="text-5xl sm:text-7xl font-extrabold text-blue-400">Ankit</h1>
+            <p class="text-2xl sm:text-3xl font-light mt-2 text-gray-300">Developer | Problem Solver | Professional Snack Enthusiast</p>
+            <p class="mt-4 max-w-2xl mx-auto text-gray-400">
+                I build clean, scalable web applications and occasionally debug my code by talking to my rubber duck. I turn coffee into code and, as you'll soon find out, I possess an unusually specific talent for the mundane.
+            </p>
+        </header>
+
+        <!-- The Funny Section: The Skill Confirmation Button -->
+        <section id="funny-skill" class="card p-6 sm:p-10 rounded-xl border border-gray-700">
+            <h2 class="text-3xl font-bold text-center mb-6 text-yellow-400">The Skill Confirmation Button</h2>
+            <p class="text-center text-gray-400 mb-6">
+                Most developers list "leadership" or "cloud computing." I list this: Click the button below to confirm my most impressive (and totally useless) hidden skill.
+            </p>
+
+            <div class="flex flex-col items-center justify-center space-y-4">
+                <button id="skillButton" 
+                        class="px-8 py-3 bg-red-600 hover:bg-red-700 transition-all duration-200 text-white font-bold rounded-full shadow-lg shadow-red-900/50 active:scale-95 transform">
+                    Confirm Ankit's Unique Talent
+                </button>
+                <div id="skillOutput" class="text-xl font-semibold p-4 rounded-lg bg-gray-800 border-l-4 border-red-500 min-h-[4rem] flex items-center justify-center w-full max-w-md text-center">
+                    Click the button to reveal the truth...
+                </div>
+                <p id="clickCount" class="text-sm text-gray-500 mt-2">
+                    Confirmed 0 times by anonymous users.
+                </p>
+            </div>
+        </section>
+
+        <!-- Standard Skills/Projects (Mock Content) -->
+        <section class="grid md:grid-cols-2 gap-8">
+            <div class="card p-6 rounded-xl border border-gray-700">
+                <h3 class="text-2xl font-semibold mb-4 text-purple-400">Tech Stack Mastery</h3>
+                <ul class="list-disc list-inside space-y-2 text-gray-300">
+                    <li>**Frontend:** React, Vue, TypeScript, Next.js</li>
+                    <li>**Backend:** Node.js (Express), Python (Django/Flask)</li>
+                    <li>**Database:** PostgreSQL, MongoDB, Firebase Firestore</li>
+                    <li>**DevOps:** Docker, AWS, CI/CD Pipelines</li>
+                </ul>
+            </div>
+            
+            <div class="card p-6 rounded-xl border border-gray-700">
+                <h3 class="text-2xl font-semibold mb-4 text-purple-400">Key Projects</h3>
+                <div class="space-y-3">
+                    <p class="text-gray-300">**Project Chronos:** A real-time data visualization tool for tracking imaginary space missions. (React, D3.js)</p>
+                    <p class="text-gray-300">**The Cat Tracker:** A location-based service designed to prove that cats spend 90% of their day sleeping. (Node.js, MongoDB)</p>
+                    <p class="text-gray-300">**Portfolio v1:** Successfully migrated from Notepad.exe to a proper HTML structure. 🚀</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer and Contact Info -->
+        <footer class="text-center pt-8 border-t border-gray-800">
+            <h3 class="text-xl font-semibold mb-2">Let's Connect</h3>
+            <p class="text-gray-400">I respond fastest to emails, but also to free pizza offers.</p>
+            <div class="mt-3 text-lg space-x-4">
+                <a href="mailto:ankit@example.com" class="text-blue-400 hover:text-blue-300 transition-colors">Email</a>
+                <a href="https://linkedin.com/in/ankit" target="_blank" class="text-blue-400 hover:text-blue-300 transition-colors">LinkedIn</a>
+                <a href="https://github.com/ankit-dev" target="_blank" class="text-blue-400 hover:text-blue-300 transition-colors">GitHub</a>
+            </div>
+            <p class="text-xs mt-6 text-gray-600">&copy; 2025 Ankit. All rights reserved. (Except for the absurd skill, that's public domain.)</p>
+        </footer>
+
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const button = document.getElementById('skillButton');
+            const output = document.getElementById('skillOutput');
+            const countDisplay = document.getElementById('clickCount');
+            const skills = [
+                "My true skill is perfectly guessing how many fries are left in the bag.",
+                "I can tell the difference between Butter and I Can't Believe It's Not Butter... blindfolded.",
+                "I have an advanced degree in finding the exact middle of a TV show to pause for a snack break.",
+                "I can successfully open a bag of chips without ripping it entirely in half, 70% of the time.",
+                "My expertise lies in remembering passwords to services I haven't used since 2010.",
+                "I am a master of turning the light off with my foot.",
+                "I've achieved peak performance in staring blankly at a screen until the bug disappears out of guilt.",
+            ];
+            
+            let clickCounter = 0; // Ephemeral counter
+
+            function updateCountDisplay() {
+                 // Note: Since Firestore isn't strictly necessary for a joke counter, we'll keep it simple 
+                 // and ephemeral (resets on page reload) to avoid unnecessary complexity.
+                countDisplay.textContent = `Confirmed ${clickCounter} times by anonymous users.`;
+            }
+
+            button.addEventListener('click', () => {
+                const originalText = button.textContent;
+                
+                // Disable button and show loading
+                button.disabled = true;
+                button.textContent = 'Analyzing impressive talent...';
+                output.textContent = 'Loading... (Please wait for true greatness)';
+
+                // Simulate processing delay
+                setTimeout(() => {
+                    // 1. Pick a random absurd skill
+                    const randomIndex = Math.floor(Math.random() * skills.length);
+                    const newSkill = skills[randomIndex];
+
+                    // 2. Update output
+                    output.innerHTML = `<span class="text-green-400">CONFIRMED:</span> ${newSkill}`;
+                    
+                    // 3. Update counter and re-enable button
+                    clickCounter++;
+                    updateCountDisplay();
+                    button.disabled = false;
+                    button.textContent = originalText;
+
+                }, 1500); // 1.5 second delay
+            });
+
+            updateCountDisplay(); // Initial load
+        });
+    </script>
+</body>
+</html>
+
